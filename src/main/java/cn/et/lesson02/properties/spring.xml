@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 将前缀是context的命名空间引入 -->
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	">
+	
+	<!-- bean用来定义读取资源文件 
+		 context命名空间读取资源文件
+	-->
+	<!-- 该bean只定义，不被引用，用于读取外部properties文件 -->
+	<!-- <bean id="ph" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location" value="classpath:/cn/et/lesson02/properties/jdbc.properties"></property>	
+	</bean> -->
+	
+	<context:property-placeholder location="classpath:/cn/et/lesson02/properties/jdbc.properties"/>
+	
+	
+	<!-- 数据源只是为了获取连接 
+			${username}是个关键字默认获取操作系统的用户名Administrator
+			
+	-->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="driverClassName" value="${driverClassName}"></property>	
+	</bean>
+	
+	<!-- 模板类主要为了封装一些操作的方法 -->
+	<!-- 模板类内注入数据,引用上面的dataSource -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+		
+	
+</beans>

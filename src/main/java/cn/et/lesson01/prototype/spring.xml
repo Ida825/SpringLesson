@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+	
+	<!-- 在spring中bean默认都是单实例 
+		1.单例默认singleton
+			容器初始化时（ApplicationContext context = new GenericXmlApplicationContext("classpath:/cn/et/lesson01/prototype/spring.xml"); ）
+			实例化
+		2.prototype多例 
+			getBean对象 实例化
+		
+	-->
+
+		<bean id="a" class="cn.et.lesson01.prototype.A" scope="singleton">
+			<property name="username" value="李四"></property>
+		</bean>
+		
+	
+</beans>

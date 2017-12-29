@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 将前缀是context的命名空间引入 -->
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	">
+	
+	<!--自定义注解
+	spring默认扫描自带的注解（如：Controller、Service...） 
+		context:exclude-filter  不希望被扫描（排除）
+		context:include-filter  希望被扫描到（包含在内)
+			type="assignable" 排除指定的类
+			type="annotation" 排除带有指定注解的类
+	 -->
+	
+	<context:component-scan base-package="cn.et.lesson02/mvc/controller">
+		<!-- <context:exclude-filter type="assignable" expression="cn.et.lesson02.mvc.controller.MyController"/> -->
+		
+		<context:include-filter type="annotation" expression="cn.et.lesson02.mvc.MyAnno"/>
+	</context:component-scan>
+	
+	<!-- 读取文件 -->
+	<context:property-placeholder location="cn/et/lesson02/mvc/jdbc.properties"/>
+	<!-- 只扫描 -->
+	<context:component-scan base-package="cn.et.lesson02.mvc"></context:component-scan>
+	
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username1}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="driverClassName" value="${driverClassName}"></property>	
+	</bean>
+	
+	模板类主要为了封装一些操作的方法
+	模板类内注入数据,引用上面的dataSource
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean> -->
+</beans>

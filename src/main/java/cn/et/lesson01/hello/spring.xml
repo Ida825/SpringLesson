@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+	<!-- 实例化类 A -->
+	<beans>
+		<bean id="a" class="cn.et.lesson01.A"></bean>	
+	</beans>
+	
+	<beans>
+		<bean id="b" class="cn.et.lesson01.A"></bean>
+	</beans>
+
+	<!-- 定义两个不带名字的bean 如果没有指定id的类 默认的名字是：类名#编号（cn.et.lesson01.B#0） -->
+	<beans>
+		<bean class="cn.et.lesson01.B"></bean>
+	</beans>
+	<beans>
+		<bean class="cn.et.lesson01.B"></bean>
+	</beans>
+</beans>
